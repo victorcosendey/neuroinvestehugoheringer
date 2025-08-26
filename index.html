@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neuroinveste - Hugo Heringer</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- LIGAÇÃO AO SEU FICHEiro CSS EXTERNO -->
+  <link rel="stylesheet" href="novostyle.css">
+
+  <!-- ADICIONADO PARA ROLAGEM SUAVE -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+
+</head>
+<body class="antialiased">
+
+  <!-- Navbar -->
+  <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-20">
+        <a href="#" class="flex items-center space-x-3">
+          <img src="images/logodourado.png" alt="Logo Neuroinveste" class="h-10 w-auto">
+        </a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#conteudo" class="nav-link text-gray-600 font-semibold">Conteúdo</a>
+          <a href="#sobre" class="nav-link text-gray-600 font-semibold">Sobre Mim</a>
+          <a href="#contato" class="nav-link text-gray-600 font-semibold">Contato</a>
+        </div>
+        <a href="https://wa.me/5532998453000" target="_blank" class="hidden md:inline-block bg-amber-500 text-white font-bold py-3 px-6 rounded-full hover:bg-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+          Fale Comigo
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section com Imagem de Fundo -->
+  <header class="relative py-24 sm:py-32">
+    <div class="absolute inset-0">
+      <img src="images/apresentacao.jpg" alt="Apresentação Hugo Heringer" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-slate-900/70"></div> <!-- Overlay escuro -->
+    </div>
+  
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white animate-on-load" style="animation-delay: 0.2s;">
+        Psicologia e <span class="text-amber-400">Mercado Financeiro</span>
+      </h1>
+      <p class="mt-6 text-lg md:text-xl leading-8 text-gray-200 max-w-3xl mx-auto animate-on-load" style="animation-delay: 0.4s;">
+        Explorando a mente do investidor para decisões mais inteligentes e conscientes.
+      </p>
+      <div class="mt-10 flex items-center justify-center gap-x-6 animate-on-load" style="animation-delay: 0.6s;">
+        <a href="#conteudo" class="bg-amber-500 text-white font-bold py-4 px-8 rounded-full hover:bg-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+          Explorar Conteúdo
+        </a>
+        <a href="#sobre" class="font-semibold leading-6 text-white group">
+          Saber mais <span class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Seção de Conteúdo -->
+  <section id="conteudo" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center animate-on-scroll">
+        <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-900">Conteúdo em Destaque</h2>
+        <p class="mt-4 text-lg text-gray-600">Artigos e reflexões sobre o comportamento do investidor.</p>
+      </div>
+      <!-- GRID ATUALIZADO PARA 4 COLUNAS EM TELAS GRANDES -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Card 1 -->
+        <div class="content-card animate-on-scroll" style="animation-delay: 0.1s;">
+          <img src="images/controleemocional.jpg" alt="Imagem sobre Controle Emocional" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800">Controle Emocional</h3>
+            <p class="mt-3 text-gray-600">Evitar decisões por medo ou euforia nos investimentos.</p>
+            <a href="#" class="card-button">Leia mais</a>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="content-card animate-on-scroll" style="animation-delay: 0.2s;">
+          <img src="images/psicologiadoinvestidor.jpg" alt="Imagem sobre Psicologia do Investidor" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800">Psicologia do Investidor</h3>
+            <p class="mt-3 text-gray-600">Entender como pensamos e agimos dentro do mercado financeiro.</p>
+            <a href="#" class="card-button">Leia mais</a>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="content-card animate-on-scroll" style="animation-delay: 0.3s;">
+          <!-- IMPORTANTE: Crie uma imagem chamada 'criptoebolsa.jpg' e coloque na sua pasta 'images' -->
+          <img src="images/criptoebolsa.jpg" alt="Imagem sobre Cripto & Bolsa de Valores" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800">Cripto & Bolsa de Valores</h3>
+            <p class="mt-3 text-gray-600">Unir análise financeira e psicológica em diferentes mercados.</p>
+            <a href="#" class="card-button">Leia mais</a>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="content-card animate-on-scroll" style="animation-delay: 0.4s;">
+          <img src="images/estrategiasconscientes.jpg" alt="Imagem sobre Estratégias Conscientes" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800">Estratégias Conscientes</h3>
+            <p class="mt-3 text-gray-600">Investir com equilíbrio e clareza, sem perder o foco.</p>
+            <a href="#" class="card-button">Leia mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Sobre Mim -->
+  <section id="sobre" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+      <div class="animate-on-scroll" data-animation="slideInLeft">
+        <img src="images/sorridente.jpg" alt="Foto de Hugo Heringer" class="rounded-2xl shadow-2xl w-full max-w-md mx-auto">
+      </div>
+      <div class="animate-on-scroll" data-animation="slideInRight">
+        <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-900">Hugo Heringer</h2>
+        <p class="mt-4 text-amber-500 font-semibold text-lg">Estudante de Psicologia & Entusiasta do Mercado Financeiro</p>
+        <p class="mt-6 text-gray-600">
+          Minha jornada é unir duas grandes paixões: a complexidade da mente humana e a dinâmica do mercado financeiro. Acredito que o sucesso nos investimentos não se resume a gráficos e números, mas fundamentalmente ao autoconhecimento e ao controle emocional.
+        </p>
+        <div class="mt-8 space-y-4">
+            <div class="experience-item flex items-start p-4">
+                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-amber-100 flex items-center justify-center">
+                    <svg class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-9-5.747h18"/></svg>
+                </div>
+                <div class="ml-4">
+                    <h4 class="text-lg font-semibold">Pesquisa Acadêmica</h4>
+                    <p class="text-gray-600">Foco em psicologia econômica e tomada de decisão.</p>
+                </div>
+            </div>
+            <div class="experience-item flex items-start p-4">
+                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-amber-100 flex items-center justify-center">
+                    <svg class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"/></svg>
+                </div>
+                <div class="ml-4">
+                    <h4 class="text-lg font-semibold">Criação de Conteúdo</h4>
+                    <p class="text-gray-600">Traduzindo conceitos complexos em insights práticos.</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Instagram -->
+  <section id="contato" class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center animate-on-scroll">
+        <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-900">Conecte-se Comigo</h2>
+        <p class="mt-4 text-lg text-gray-600">Acompanhe minhas últimas postagens e vamos conversar.</p>
+      </div>
+      <div class="mt-12 animate-on-scroll">
+        <!-- CÓDIGO DO ELFSIGHT INSERIDO AQUI -->
+        <script src="https://elfsightcdn.com/platform.js" data-elfsight-app-lazy defer></script>
+        <div class="elfsight-app-359521fc-cfa0-44e6-9b9d-b96dd64d4177" data-elfsight-app-lazy></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 py-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+      <p class="font-semibold text-white text-lg">© 2025 Hugo Heringer - Neuroinveste</p>
+      <p class="text-sm mt-4 max-w-2xl mx-auto text-gray-300">
+        Este site é mantido por um estudante de Psicologia. Não possui intuito de oferecer atendimento clínico,
+        mas apenas divulgar conteúdos educacionais e buscar parcerias em projetos e pesquisas acadêmicas.
+      </p>
+    </div>
+  </footer>
+  
+  <!-- SCRIPT PARA ANIMAÇÕES AO ROLAR A PÁGINA -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+      if (!animatedElements.length) return;
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1 // O elemento é considerado visível quando 10% dele está na tela
+      });
+
+      animatedElements.forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* =========================================
+   CONFIGURAÇÕES GERAIS E PALETA DE CORES (ORIGINAL)
+========================================= */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #2d3748;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* =========================================
+   NAVBAR (TEMA CLARO COM DETALHES ÂMBAR)
+========================================= */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f59e0b; /* COR DE DESTAQUE ÂMBAR */
+  transition: width 0.3s ease;
+}
+.nav-link:hover {
+  color: #1a202c;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* =========================================
+   SEÇÕES (TEMA CLARO)
+========================================= */
+#conteudo, #contato {
+  background-color: #f8f9fa;
+}
+
+/* =========================================
+   ANIMAÇÕES
+========================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-on-load {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(20px);
+}
+.animate-on-scroll[data-animation="slideInLeft"] { transform: translateX(-30px); }
+.animate-on-scroll[data-animation="slideInRight"] { transform: translateX(30px); }
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* =========================================
+   TÍTULOS DE SEÇÃO (TEMA CLARO COM DETALHES ÂMBAR)
+========================================= */
+.section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #f59e0b; /* COR DE DESTAQUE ÂMBAR */
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+.animate-on-scroll.is-visible .section-title::after {
+  width: 120px;
+}
+
+/* =========================================
+   CARDS DE CONTEÚDO (TEMA CLARO COM DETALHES ÂMBAR)
+========================================= */
+.content-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.content-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.content-card img {
+  transition: transform 0.4s ease;
+}
+.content-card:hover img {
+  transform: scale(1.05);
+}
+.card-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-weight: 600;
+  color: #f59e0b; /* COR DE DESTAQUE ÂMBAR */
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.card-button::after {
+  content: '→';
+  position: absolute;
+  left: 105%;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(-10px);
+}
+.content-card:hover .card-button {
+  color: #1a202c;
+}
+.content-card:hover .card-button::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =========================================
+   SEÇÃO SOBRE MIM (TEMA CLARO)
+========================================= */
+.experience-item {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 0.75rem;
+}
+.experience-item:hover {
+    background-color: #fffbeb; /* Âmbar bem claro */
+    transform: translateX(5px);
+}
+
+/* =========================================
+   WIDGET DO INSTAGRAM
+========================================= */
+#ft-insta-app {
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  min-height: 500px; /* ADICIONE ESTA LINHA */
+}
