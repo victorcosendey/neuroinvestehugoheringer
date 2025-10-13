@@ -1,16 +1,13 @@
-/* =========================================
-   CONFIGURAÇÕES GERAIS E PALETA DE CORES (ORIGINAL)
-========================================= */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f8f9fa;
-  color: #2d3748;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+html {
+  scroll-behavior: smooth;
 }
 
-/* =========================================
-   NAVBAR (TEMA CLARO COM DETALHES ÂMBAR)
-========================================= */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #111827; /* Fundo liso cinza bem escuro */
+  color: #d1d5db; 
+}
+
 .nav-link {
   position: relative;
   transition: color 0.3s ease;
@@ -23,26 +20,16 @@ body {
   bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #f59e0b; /* COR DE DESTAQUE ÂMBAR */
+  background-color: #f59e0b; /* Âmbar */
   transition: width 0.3s ease;
 }
 .nav-link:hover {
-  color: #1a202c;
+  color: #ffffff;
 }
 .nav-link:hover::after {
   width: 100%;
 }
 
-/* =========================================
-   SEÇÕES (TEMA CLARO)
-========================================= */
-#conteudo, #contato {
-  background-color: #f8f9fa;
-}
-
-/* =========================================
-   ANIMAÇÕES
-========================================= */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
@@ -71,9 +58,6 @@ body {
   transform: translate(0, 0);
 }
 
-/* =========================================
-   TÍTULOS DE SEÇÃO (TEMA CLARO COM DETALHES ÂMBAR)
-========================================= */
 .section-title {
   position: relative;
   display: inline-block;
@@ -87,7 +71,7 @@ body {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background-color: #f59e0b; /* COR DE DESTAQUE ÂMBAR */
+  background-color: #f59e0b; /* Âmbar */
   border-radius: 2px;
   transition: width 0.5s ease;
 }
@@ -95,69 +79,55 @@ body {
   width: 120px;
 }
 
-/* =========================================
-   CARDS DE CONTEÚDO (TEMA CLARO COM DETALHES ÂMBAR)
-========================================= */
-.content-card {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  border-radius: 1rem;
-  overflow: hidden;
-  background-color: #ffffff;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+/* Estilo da moldura para as fotos */
+.photo-frame {
+  padding: 1rem;
+  border: 1px solid #4b5563;
+  background-color: #1f2937;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  border-radius: 0.5rem;
+  max-width: 450px; /* Limita a largura da moldura */
 }
-.content-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-.content-card img {
-  transition: transform 0.4s ease;
-}
-.content-card:hover img {
-  transform: scale(1.05);
-}
-.card-button {
-  display: inline-block;
-  margin-top: 1.5rem;
-  font-weight: 600;
-  color: #f59e0b; /* COR DE DESTAQUE ÂMBAR */
-  position: relative;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.card-button::after {
-  content: '→';
-  position: absolute;
-  left: 105%;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  transform: translateX(-10px);
-}
-.content-card:hover .card-button {
-  color: #1a202c;
-}
-.content-card:hover .card-button::after {
-  opacity: 1;
-  transform: translateX(0);
+.photo-frame img {
+  border-radius: 0.25rem;
+  display: block;
+  width: 100%;
 }
 
-/* =========================================
-   SEÇÃO SOBRE MIM (TEMA CLARO)
-========================================= */
+/* Estilo dos cards de artigo */
+.article-card {
+  display: block;
+  padding: 1.5rem;
+  background-color: #1f2937;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
+}
+.article-card:hover {
+  transform: translateX(10px);
+  background-color: #374151;
+}
+.article-card h4 {
+    color: #f3f4f6;
+    font-weight: 600;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+.article-card p {
+    color: #f59e0b;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
 .experience-item {
     transition: background-color 0.3s ease, transform 0.3s ease;
     border-radius: 0.75rem;
+    border: 1px solid #374151;
 }
 .experience-item:hover {
-    background-color: #fffbeb; /* Âmbar bem claro */
+    background-color: #1f2937;
     transform: translateX(5px);
-}
-
-/* =========================================
-   WIDGET DO INSTAGRAM
-========================================= */
-#ft-insta-app {
-  border-radius: 1rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
-  min-height: 500px; /* ADICIONE ESTA LINHA */
 }
