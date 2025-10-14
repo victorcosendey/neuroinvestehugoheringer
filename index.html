@@ -111,14 +111,13 @@
       width: 120px;
     }
 
-    /* Estilo da moldura para as fotos */
     .photo-frame {
       padding: 1rem;
       border: 1px solid #4b5563;
       background-color: #1f2937;
       box-shadow: 0 10px 20px rgba(0,0,0,0.4);
       border-radius: 0.5rem;
-      max-width: 450px; /* Limita a largura da moldura */
+      max-width: 450px;
     }
     .photo-frame img {
       border-radius: 0.25rem;
@@ -126,7 +125,6 @@
       width: 100%;
     }
 
-    /* Estilo dos cards de artigo */
     .article-card {
       display: block;
       padding: 1.5rem;
@@ -158,10 +156,72 @@
         transition: background-color 0.3s ease, transform 0.3s ease;
         border-radius: 0.75rem;
         border: 1px solid #374151;
+        display: block;
+        text-decoration: none;
     }
     .experience-item:hover {
         background-color: #1f2937;
         transform: translateX(5px);
+    }
+
+    .certificate-frame {
+      background-color: #1f2937;
+      border: 1px solid #4b5563;
+      border-radius: 0.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      cursor: pointer; /* Adiciona cursor de ponteiro para indicar que é clicável */
+      display: flex;
+      flex-direction: column;
+    }
+    .certificate-frame:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+    .certificate-frame img {
+      width: 100%;
+      height: auto;
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+    }
+
+    /* Estilos para o Modal (Lightbox) */
+    .modal {
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 90vh;
+    }
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .close-modal:hover,
+    .close-modal:focus {
+      color: #bbb;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -177,6 +237,7 @@
         <div class="hidden md:flex items-center space-x-8">
           <a href="#sobre" class="nav-link text-gray-300 hover:text-white font-semibold">Sobre Mim</a>
           <a href="#artigos" class="nav-link text-gray-300 hover:text-white font-semibold">Artigos</a>
+          <a href="#certificados" class="nav-link text-gray-300 hover:text-white font-semibold">Certificados</a>
           <a href="#instagram" class="nav-link text-gray-300 hover:text-white font-semibold">Conecte-se</a>
           <a href="#contato" class="nav-link text-gray-300 hover:text-white font-semibold">Contato</a>
         </div>
@@ -226,16 +287,16 @@
           A minha jornada é unir duas grandes paixões: a complexidade da mente humana e a dinâmica do mercado financeiro. Acredito que o sucesso nos investimentos não se resume a gráficos e números, mas fundamentalmente ao autoconhecimento e ao controlo emocional.
         </p>
         <div class="mt-8 space-y-4">
-            <div class="experience-item flex items-start p-4">
+            <a href="https://pensaracademico.unifacig.edu.br/index.php/pensaracademico/article/view/4533" target="_blank" class="experience-item p-4 flex items-start">
                 <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center">
                     <svg class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
                 <div class="ml-4">
-                    <hh4 class="text-lg font-semibold text-white">Pesquisa Académica</h4>
+                    <h4 class="text-lg font-semibold text-white">Pesquisa Académica</h4>
                     <p class="text-gray-400">Foco em psicologia económica e tomada de decisão.</p>
                 </div>
-            </div>
-            <div class="experience-item flex items-start p-4">
+            </a>
+            <a href="https://www.instagram.com/neuroinveste" target="_blank" class="experience-item p-4 flex items-start">
                 <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center">
                     <svg class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
                 </div>
@@ -243,7 +304,16 @@
                     <h4 class="text-lg font-semibold text-white">Criação de Conteúdo</h4>
                     <p class="text-gray-400">Traduzindo conceitos complexos em insights práticos.</p>
                 </div>
-            </div>
+            </a>
+            <a href="https://www.linkedin.com/in/hugo-heringer-5159a033a" target="_blank" class="experience-item p-4 flex items-start">
+              <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center">
+                <svg class="h-6 w-6 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+              </div>
+              <div class="ml-4">
+                  <h4 class="text-lg font-semibold text-white">Perfil Profissional</h4>
+                  <p class="text-gray-400">Conecte-se comigo no LinkedIn.</p>
+              </div>
+            </a>
         </div>
       </div>
     </div>
@@ -269,30 +339,90 @@
           </div>
           <div class="md:col-span-2 hidden md:flex justify-center animate-on-scroll" data-animation="slideInRight">
               <div class="photo-frame">
-                  <img src="images/foto3.jpg" alt="Foto de Hugo Heringer">
+                  <img src="images/foto7.png" alt="Foto de Hugo Heringer">
               </div>
           </div>
       </div>
     </div>
   </section>
+
+  <!-- Nova Seção de Certificados -->
+  <section id="certificados" class="py-24 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center animate-on-scroll">
+        <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Certificados e Qualificações</h2>
+        <p class="mt-4 text-lg text-gray-400">Algumas das minhas certificações e cursos concluídos.</p>
+      </div>
+      <div class="mt-16 grid md:grid-cols-2 gap-16 items-center">
+        <div class="animate-on-scroll flex justify-center" data-animation="slideInLeft">
+          <div class="photo-frame">
+            <img src="images/foto6.png" alt="Foto de Hugo Heringer">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6 animate-on-scroll" data-animation="slideInRight">
+          <div class="certificate-frame" onclick="openModal('images/certificado1.jpg')">
+            <img src="images/certificado1.jpg" alt="Certificado Behavioral Finance">
+            <div class="p-3 text-center">
+              <h5 class="font-semibold text-white text-sm leading-tight">Behavioral Finance</h5>
+              <p class="text-xs text-gray-400 mt-1">Duke University</p>
+            </div>
+          </div>
+          <div class="certificate-frame" onclick="openModal('images/certificado2.jpg')">
+            <img src="images/certificado2.jpg" alt="Certificado Learning and memory in the brain">
+             <div class="p-3 text-center">
+              <h5 class="font-semibold text-white text-sm leading-tight">Learning and memory in the brain</h5>
+              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
+            </div>
+          </div>
+          <div class="certificate-frame" onclick="openModal('images/certificado3.jpg')">
+            <img src="images/certificado3.jpg" alt="Certificado The Psychology of Emotions">
+             <div class="p-3 text-center">
+              <h5 class="font-semibold text-white text-sm leading-tight">The Psychology of Emotions</h5>
+              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
+            </div>
+          </div>
+          <div class="certificate-frame" onclick="openModal('images/certificado4.jpg')">
+            <img src="images/certificado4.jpg" alt="Certificado Introduction to Cognitive Psychology">
+             <div class="p-3 text-center">
+              <h5 class="font-semibold text-white text-sm leading-tight">Cognitive Psychology and Neuropsychology</h5>
+              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
+            </div>
+          </div>
+          <div class="certificate-frame" onclick="openModal('images/certificado5.jpg')">
+            <img src="images/certificado5.jpg" alt="Certificado The neuropsychology of decision making">
+             <div class="p-3 text-center">
+              <h5 class="font-semibold text-white text-sm leading-tight">The neuropsychology of decision making</h5>
+              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
+            </div>
+          </div>
+          <div class="certificate-frame" onclick="openModal('images/certificado6.jpg')">
+            <img src="images/certificado6.jpg" alt="Certificado The science of mind and decision making">
+             <div class="p-3 text-center">
+              <h5 class="font-semibold text-white text-sm leading-tight">The science of mind and decision making</h5>
+              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
   <!-- Seção Conecte-se Comigo (Instagram) -->
-<section id="instagram" class="py-24 bg-gray-900">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="text-center animate-on-scroll">
-      <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Conecte-se Comigo</h2>
-      <p class="mt-4 text-lg text-gray-400">Acompanhe as minhas últimas postagens e vamos conversar.</p>
+  <section id="instagram" class="py-24 bg-gray-800">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center animate-on-scroll">
+        <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Conecte-se Comigo</h2>
+        <p class="mt-4 text-lg text-gray-400">Acompanhe as minhas últimas postagens e vamos conversar.</p>
+      </div>
+      <div class="mt-12 animate-on-scroll">
+        <script src="https://elfsightcdn.com/platform.js" data-elfsight-app-lazy defer></script>
+        <div class="elfsight-app-359521fc-cfa0-44e6-9b9d-b96dd64d4177" data-elfsight-app-lazy></div>
+      </div>
     </div>
-    <div class="mt-12 animate-on-scroll">
-      <!-- SCRIPT CORRIGIDO ABAIXO -->
-      <script src="https://elfsightcdn.com/platform.js" data-elfsight-app-lazy defer></script>
-      <div class="elfsight-app-359521fc-cfa0-44e6-9b9d-b96dd64d4177" data-elfsight-app-lazy></div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Seção Contato (Fale Comigo) -->
-  <section id="contato" class="py-24 bg-gray-800">
+  <section id="contato" class="py-24 bg-gray-900">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
         <div class="animate-on-scroll">
             <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Fale Comigo</h2>
@@ -308,7 +438,6 @@
     </div>
   </section>
 
-
   <!-- Footer -->
   <footer class="bg-black py-12">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
@@ -320,6 +449,12 @@
     </div>
   </footer>
   
+  <!-- Modal (Lightbox) para Certificados -->
+  <div id="certificateModal" class="modal hidden">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const animatedElements = document.querySelectorAll('.animate-on-scroll');
@@ -336,6 +471,19 @@
         observer.observe(element);
       });
     });
+
+    // Funções para o Modal (Lightbox)
+    const modal = document.getElementById('certificateModal');
+    const modalImg = document.getElementById('modalImage');
+
+    function openModal(imgSrc) {
+      modal.classList.remove('hidden');
+      modalImg.src = imgSrc;
+    }
+
+    function closeModal() {
+      modal.classList.add('hidden');
+    }
   </script>
 
 </body>
