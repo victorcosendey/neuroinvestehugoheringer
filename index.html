@@ -229,11 +229,12 @@
 
   <!-- Navbar -->
   <nav class="bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
         <a href="#" class="flex items-center space-x-3">
           <img src="images/logodourado.png" alt="Logo NeuroInveste" class="h-10 w-auto">
         </a>
+        <!-- Menu para Desktop -->
         <div class="hidden md:flex items-center space-x-8">
           <a href="#sobre" class="nav-link text-gray-300 hover:text-white font-semibold">Sobre Mim</a>
           <a href="#artigos" class="nav-link text-gray-300 hover:text-white font-semibold">Artigos</a>
@@ -244,15 +245,32 @@
         <a href="https://wa.me/5533988326566" target="_blank" class="hidden md:inline-block bg-amber-500 text-white font-bold py-3 px-6 rounded-full hover:bg-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
           Fale Comigo
         </a>
+        <!-- Botão do Menu Móvel -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-white focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+          </button>
+        </div>
       </div>
+    </div>
+    <!-- Menu Móvel (oculto por padrão) -->
+    <div id="mobile-menu" class="md:hidden hidden bg-gray-900">
+      <a href="#sobre" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Sobre Mim</a>
+      <a href="#artigos" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Artigos</a>
+      <a href="#certificados" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Certificados</a>
+      <a href="#instagram" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Conecte-se</a>
+      <a href="#contato" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Contato</a>
+      <a href="https://wa.me/5533988326566" class="block py-4 px-4 text-center text-sm bg-amber-500 text-white font-bold hover:bg-amber-600">Fale Comigo</a>
     </div>
   </nav>
 
   <!-- Hero Section -->
   <header class="relative py-24 sm:py-32 bg-gray-900 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
         <div class="text-center md:text-left">
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white animate-on-load" style="animation-delay: 0.2s;">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white animate-on-load" style="animation-delay: 0.2s;">
                 Psicologia e <span class="text-amber-400">Mercado Financeiro</span>
             </h1>
             <p class="mt-6 text-lg md:text-xl leading-8 text-gray-200 max-w-3xl mx-auto md:mx-0 animate-on-load" style="animation-delay: 0.4s;">
@@ -265,7 +283,7 @@
             </div>
         </div>
         <div class="hidden md:flex justify-center animate-on-scroll" data-animation="slideInRight">
-            <div class="photo-frame">
+            <div class="photo-frame mx-auto">
                 <img src="images/foto1.jpg" alt="Foto de Hugo Heringer" class="w-full">
             </div>
         </div>
@@ -274,9 +292,9 @@
 
   <!-- Seção Sobre Mim -->
   <section id="sobre" class="py-24 bg-gray-900">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-16 items-center">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
       <div class="animate-on-scroll flex justify-center" data-animation="slideInLeft">
-        <div class="photo-frame">
+        <div class="photo-frame mx-auto">
             <img src="images/foto4.jpg" alt="Foto de Hugo Heringer">
         </div>
       </div>
@@ -326,8 +344,8 @@
         <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Artigos e Publicações</h2>
         <p class="mt-4 text-lg text-gray-400">Trabalhos académicos e reflexões publicadas.</p>
       </div>
-      <div class="mt-16 grid md:grid-cols-5 gap-16 items-start">
-          <div class="md:col-span-3 space-y-8 animate-on-scroll" data-animation="slideInLeft">
+      <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div class="space-y-8 animate-on-scroll" data-animation="slideInLeft">
               <a href="https://www.semanticscholar.org/paper/ENTRE-O-CUIDADO-E-A-EXAUSTÃO%3A-ANÁLISE-DO-ESTRESSE-E-Guimarães-Brandão/1395a7348aed01d7cb41fd548bc08c0b35064aef" target="_blank" class="article-card">
                   <h4>ENTRE O CUIDADO E A EXAUSTÃO: ANÁLISE DO ESTRESSE E BURNOUT EM PROFISSIONAIS DE SAÚDE</h4>
                   <p>Ler publicação →</p>
@@ -337,8 +355,8 @@
                   <p>Ler publicação →</p>
               </a>
           </div>
-          <div class="md:col-span-2 hidden md:flex justify-center animate-on-scroll" data-animation="slideInRight">
-              <div class="photo-frame">
+          <div class="hidden lg:flex justify-center animate-on-scroll" data-animation="slideInRight">
+              <div class="photo-frame mx-auto">
                   <img src="images/foto7.png" alt="Foto de Hugo Heringer">
               </div>
           </div>
@@ -353,9 +371,9 @@
         <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Certificados e Qualificações</h2>
         <p class="mt-4 text-lg text-gray-400">Algumas das minhas certificações e cursos concluídos.</p>
       </div>
-      <div class="mt-16 grid md:grid-cols-2 gap-16 items-center">
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
         <div class="animate-on-scroll flex justify-center" data-animation="slideInLeft">
-          <div class="photo-frame">
+          <div class="photo-frame mx-auto">
             <img src="images/foto6.png" alt="Foto de Hugo Heringer">
           </div>
         </div>
@@ -427,7 +445,7 @@
         <div class="animate-on-scroll">
             <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Fale Comigo</h2>
         </div>
-        <div class="mt-10 max-w-3xl mx-auto bg-gray-700 p-8 rounded-2xl shadow-lg border-l-4 border-amber-400 animate-on-scroll">
+        <div class="mt-10 max-w-3xl mx-auto bg-gray-700 p-6 sm:p-8 rounded-2xl shadow-lg border-l-4 border-amber-400 animate-on-scroll">
             <p class="text-gray-300 text-lg mb-6 text-center">Entre em contacto para parcerias, projetos e pesquisas académicas.</p>
             <div class="space-y-4 text-left">
                 <p class="text-gray-100"><strong class="font-semibold text-gray-100">Email:</strong> neuroinveste@gmail.com</p>
@@ -457,18 +475,27 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // Animação de Scroll
       const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      if (!animatedElements.length) return;
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
+      if (animatedElements.length) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        animatedElements.forEach(element => {
+          observer.observe(element);
         });
-      }, { threshold: 0.1 });
-      animatedElements.forEach(element => {
-        observer.observe(element);
+      }
+
+      // Menu Móvel
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
       });
     });
 
