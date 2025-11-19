@@ -1,520 +1,364 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>NeuroInveste - Hugo Heringer</title>
+  <meta name="description" content="NeuroInveste: Unindo Psicologia, Finanças e Inovação.">
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://neuroinveste.com.br/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="https://neuroinveste.com.br/favicon.ico" type="image/x-icon">
-  <link rel="icon" type="image/png" href="https://neuroinveste.com.br/images/logodourado-512x512.png">
-  <link rel="apple-touch-icon" href="https://neuroinveste.com.br/images/logodourado-512x512.png">
+  <link rel="icon" type="image/png" href="images/logodourado-512x512.png">
 
-  <!-- Open Graph & Twitter Card -->
-  <meta property="og:title" content="NeuroInveste - Hugo Heringer">
-  <meta property="og:description" content="Unindo Psicologia, Finanças e Inovação.">
-  <meta property="og:image" content="https://neuroinveste.com.br/images/foto1.jpg">
-  <meta property="og:url" content="https://neuroinveste.com.br">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NeuroInveste - Hugo Heringer">
-  <meta name="twitter:description" content="Unindo Psicologia, Finanças e Inovação.">
-  <meta name="twitter:image" content="https://neuroinveste.com.br/images/foto1.jpg">
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Google Fonts: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Custom CSS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Poppins', 'sans-serif'] },
+          colors: {
+            neuro: {
+              dark: '#0f172a',    // Azul muito escuro
+              card: '#1e293b',    // Slate 800
+              gold: '#f59e0b',    // Amber 500
+              goldHover: '#d97706'
+            }
+          },
+          animation: {
+            'blob': 'blob 10s infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #111827; /* Fundo liso cinza bem escuro */
-      color: #d1d5db; 
-    }
-
-    .nav-link {
-      position: relative;
-      transition: color 0.3s ease;
-    }
+    body { background-color: #0f172a; color: #cbd5e1; }
+    .cursor-blink { border-right: 3px solid #f59e0b; animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { border-color: transparent; } }
+    .nav-link { position: relative; }
     .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #f59e0b; /* Âmbar */
-      transition: width 0.3s ease;
+      content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0;
+      background-color: #f59e0b; transition: width 0.3s ease;
     }
-    .nav-link:hover {
-      color: #ffffff;
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(30px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    .animate-on-load {
-      animation: fadeInUp 0.8s ease-out forwards;
-      opacity: 0;
-    }
-    .animate-on-scroll {
-      opacity: 0;
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-      transform: translateY(20px);
-    }
-    .animate-on-scroll[data-animation="slideInLeft"] { transform: translateX(-30px); }
-    .animate-on-scroll[data-animation="slideInRight"] { transform: translateX(30px); }
-    .animate-on-scroll.is-visible {
-      opacity: 1;
-      transform: translate(0, 0);
-    }
-
-    .section-title {
-      position: relative;
-      display: inline-block;
-      padding-bottom: 0.5rem;
-    }
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background-color: #f59e0b; /* Âmbar */
-      border-radius: 2px;
-      transition: width 0.5s ease;
-    }
-    .animate-on-scroll.is-visible .section-title::after {
-      width: 120px;
-    }
-
-    .photo-frame {
-      padding: 1rem;
-      border: 1px solid #4b5563;
-      background-color: #1f2937;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-      border-radius: 0.5rem;
-      max-width: 450px;
-    }
-    .photo-frame img {
-      border-radius: 0.25rem;
-      display: block;
-      width: 100%;
-    }
-
-    .article-card {
-      display: block;
-      padding: 1.5rem;
-      background-color: #1f2937;
-      border-left: 4px solid #f59e0b;
-      border-radius: 0.5rem;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      text-decoration: none;
-    }
-    .article-card:hover {
-      transform: translateX(10px);
-      background-color: #374151;
-    }
-    .article-card h4 {
-        color: #f3f4f6;
-        font-weight: 600;
-        font-size: 1.125rem;
-        line-height: 1.75rem;
-    }
-    .article-card p {
-        color: #f59e0b;
-        font-size: 0.875rem;
-        line-height: 1.25rem;
-        margin-top: 0.5rem;
-        font-weight: 500;
-    }
+    .nav-link:hover::after { width: 100%; }
     
-    .experience-item {
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        border-radius: 0.75rem;
-        border: 1px solid #374151;
-        display: block;
-        text-decoration: none;
-    }
-    .experience-item:hover {
-        background-color: #1f2937;
-        transform: translateX(5px);
-    }
-
-    .certificate-frame {
-      background-color: #1f2937;
-      border: 1px solid #4b5563;
-      border-radius: 0.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      overflow: hidden;
-      cursor: pointer; /* Adiciona cursor de ponteiro para indicar que é clicável */
-      display: flex;
-      flex-direction: column;
-    }
-    .certificate-frame:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    }
-    .certificate-frame img {
-      width: 100%;
-      height: auto;
-      border-top-left-radius: 0.25rem;
-      border-top-right-radius: 0.25rem;
-    }
-
-    /* Estilos para o Modal (Lightbox) */
-    .modal {
-      position: fixed;
-      z-index: 100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    .modal-content {
-      max-width: 90%;
-      max-height: 90vh;
-    }
-    .close-modal {
-      position: absolute;
-      top: 20px;
-      right: 35px;
-      color: #f1f1f1;
-      font-size: 40px;
-      font-weight: bold;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-    .close-modal:hover,
-    .close-modal:focus {
-      color: #bbb;
-      text-decoration: none;
-    }
+    /* Ajuste Behold */
+    behold-widget { display: block; width: 100%; margin: 0 auto; }
+    
+    /* Ícones SVG padronizados */
+    .icon-social { width: 20px; height: 20px; fill: currentColor; }
   </style>
 </head>
-<body class="antialiased">
+<body class="antialiased overflow-x-hidden selection:bg-neuro-gold selection:text-white" x-data="{ mobileMenuOpen: false }">
 
-  <!-- Navbar -->
-  <nav class="bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+  <nav class="fixed w-full top-0 z-50 bg-neuro-dark/95 backdrop-blur-md border-b border-white/5 shadow-lg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
-        <a href="#" class="flex items-center space-x-3">
-          <img src="images/logodourado.png" alt="Logo NeuroInveste" class="h-10 w-auto">
+        <a href="#" class="flex items-center gap-2 group shrink-0">
+          <img src="images/logodourado.png" alt="Logo NeuroInveste" class="h-10 w-auto transition-transform group-hover:rotate-3">
+          <span class="font-bold text-white text-lg tracking-tight hidden sm:block">Neuro<span class="text-neuro-gold">Investe</span></span>
         </a>
-        <!-- Menu para Desktop -->
+
         <div class="hidden md:flex items-center space-x-8">
-          <a href="#sobre" class="nav-link text-gray-300 hover:text-white font-semibold">Sobre Mim</a>
-          <a href="#artigos" class="nav-link text-gray-300 hover:text-white font-semibold">Artigos</a>
-          <a href="#certificados" class="nav-link text-gray-300 hover:text-white font-semibold">Certificados</a>
-          <a href="#instagram" class="nav-link text-gray-300 hover:text-white font-semibold">Conecte-se</a>
-          <a href="#contato" class="nav-link text-gray-300 hover:text-white font-semibold">Contato</a>
+          <a href="#sobre" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Sobre</a>
+          <a href="#artigos" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Artigos</a>
+          <a href="#certificados" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Certificados</a>
+          <a href="#contato" class="nav-link text-sm font-medium text-gray-300 hover:text-white transition-colors">Contato</a>
         </div>
-        <a href="https://wa.me/5533988326566" target="_blank" class="hidden md:inline-block bg-amber-500 text-white font-bold py-3 px-6 rounded-full hover:bg-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
-          Fale Comigo
-        </a>
-        <!-- Botão do Menu Móvel -->
-        <div class="md:hidden flex items-center">
-          <button id="mobile-menu-button" class="text-white focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+
+        <div class="hidden md:flex items-center gap-4 border-l border-gray-700 pl-6 shrink-0">
+            <a href="https://www.instagram.com/neuroinveste" target="_blank" class="text-gray-400 hover:text-neuro-gold transition-colors">
+                <svg class="icon-social" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.068 1.644.068 4.849 0 3.204-.012 3.584-.068 4.85-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.068-4.85.068-3.204 0-3.584-.012-4.85-.068-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.068-1.644-.068-4.849 0-3.204.012-3.584.068-4.85.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.068 4.85-.068zm0-2.163c-3.259 0-3.667.014-4.947.072C2.793.272.766 2.296.272 4.947.214 6.227.202 6.635.202 9.897c0 3.259.014 3.668.072 4.948.494 2.628 2.52 4.655 5.171 5.149 1.28.058 1.688.072 4.948.072 3.259 0 3.668-.014 4.948-.072 2.628-.493 4.655-2.52 5.149-5.171.058-1.28.072-1.688.072-4.948 0-3.259-.014-3.667-.072-4.947-.493-2.627-2.52-4.655-5.171-5.149-1.28-.058-1.688-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/hugo-heringer-5159a033a" target="_blank" class="text-gray-400 hover:text-neuro-gold transition-colors">
+                <svg class="icon-social" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://wa.me/5533988326566" target="_blank" class="text-gray-400 hover:text-neuro-gold transition-colors">
+                <svg class="icon-social" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+        </div>
+
+        <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gray-300 p-2 focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <path x-show="mobileMenuOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
-          </button>
-        </div>
+        </button>
       </div>
     </div>
-    <!-- Menu Móvel (oculto por padrão) -->
-    <div id="mobile-menu" class="md:hidden hidden bg-gray-900">
-      <a href="#sobre" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Sobre Mim</a>
-      <a href="#artigos" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Artigos</a>
-      <a href="#certificados" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Certificados</a>
-      <a href="#instagram" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Conecte-se</a>
-      <a href="#contato" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">Contato</a>
-      <a href="https://wa.me/5533988326566" class="block py-4 px-4 text-center text-sm bg-amber-500 text-white font-bold hover:bg-amber-600">Fale Comigo</a>
+    
+    <div x-show="mobileMenuOpen" x-transition x-cloak class="md:hidden bg-neuro-card border-b border-white/10 shadow-2xl absolute w-full">
+        <div class="px-4 pt-2 pb-6 space-y-2">
+            <a href="#sobre" @click="mobileMenuOpen = false" class="block py-3 px-4 text-gray-300">Sobre</a>
+            <a href="#artigos" @click="mobileMenuOpen = false" class="block py-3 px-4 text-gray-300">Artigos</a>
+            <a href="#certificados" @click="mobileMenuOpen = false" class="block py-3 px-4 text-gray-300">Certificados</a>
+            <a href="#contato" @click="mobileMenuOpen = false" class="block py-3 px-4 text-gray-300">Contato</a>
+        </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header class="relative py-24 sm:py-32 bg-gray-900 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-        <div class="text-center md:text-left">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white animate-on-load" style="animation-delay: 0.2s;">
-                Psicologia e <span class="text-amber-400">Mercado Financeiro</span>
+  <header class="relative pt-32 pb-20 sm:pt-40 sm:pb-24 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left z-10 order-1 w-full">
+            <div class="inline-flex items-center gap-2 px-2 py-1 rounded-full bg-neuro-gold/5 border border-neuro-gold/10 text-neuro-gold text-[10px] font-bold uppercase tracking-widest mb-6">
+                <span class="w-1.5 h-1.5 rounded-full bg-neuro-gold animate-pulse"></span> Disponível para Projetos
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
+                Psicologia e <br/>
+                <span class="text-neuro-gold cursor-blink" 
+                      x-data="{ 
+                          text: '', 
+                          words: ['Mercado Financeiro', 'Controle Emocional', 'Decisão Racional'], 
+                          wordIndex: 0, charIndex: 0, isDeleting: false,
+                          type() {
+                              const currentWord = this.words[this.wordIndex];
+                              if (this.isDeleting) { this.text = currentWord.substring(0, this.charIndex - 1); this.charIndex--; } 
+                              else { this.text = currentWord.substring(0, this.charIndex + 1); this.charIndex++; }
+                              let speed = 100;
+                              if (this.isDeleting) speed /= 2;
+                              if (!this.isDeleting && this.charIndex === currentWord.length) { speed = 2000; this.isDeleting = true; } 
+                              else if (this.isDeleting && this.charIndex === 0) { this.isDeleting = false; this.wordIndex = (this.wordIndex + 1) % this.words.length; speed = 500; }
+                              setTimeout(() => this.type(), speed);
+                          }
+                      }" x-init="type()" x-text="text"></span>
             </h1>
-            <p class="mt-6 text-lg md:text-xl leading-8 text-gray-200 max-w-3xl mx-auto md:mx-0 animate-on-load" style="animation-delay: 0.4s;">
-                Explorando a mente do investidor para decisões mais inteligentes e conscientes.
+            
+            <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                Explorando a mente do investidor para decisões mais inteligentes. 
+                O sucesso não é apenas sobre números, é sobre comportamento.
             </p>
-            <div class="mt-10 flex items-center justify-center md:justify-start gap-x-6 animate-on-load" style="animation-delay: 0.6s;">
-                <a href="#artigos" class="bg-amber-500 text-white font-bold py-4 px-8 rounded-full hover:bg-amber-600 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg">
-                    Explorar Artigos
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="#artigos" class="bg-neuro-gold text-white font-bold py-4 px-8 rounded-full hover:bg-neuro-goldHover transition-transform hover:scale-105 shadow-lg shadow-neuro-gold/20 text-center">
+                    Ler Artigos
+                </a>
+                <a href="#sobre" class="px-8 py-4 rounded-full border border-gray-600 text-gray-300 font-semibold hover:bg-white/5 hover:border-white transition-all text-center">
+                    Conhecer Hugo
                 </a>
             </div>
         </div>
-        <div class="hidden md:flex justify-center animate-on-scroll" data-animation="slideInRight">
-            <div class="photo-frame mx-auto">
-                <img src="images/foto1.jpg" alt="Foto de Hugo Heringer" class="w-full">
+
+        <div class="hidden lg:flex relative justify-center items-center order-2 w-full">
+            <div class="relative bg-neuro-card p-2 rounded-2xl border border-white/10 shadow-2xl max-w-md w-full">
+                <img src="images/foto1.jpg" alt="Hugo Heringer" class="rounded-xl w-full h-auto object-cover">
             </div>
         </div>
     </div>
   </header>
 
-  <!-- Seção Sobre Mim -->
-  <section id="sobre" class="py-24 bg-gray-900">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-      <div class="animate-on-scroll flex justify-center" data-animation="slideInLeft">
-        <div class="photo-frame mx-auto">
-            <img src="images/foto4.jpg" alt="Foto de Hugo Heringer">
-        </div>
-      </div>
-      <div class="animate-on-scroll" data-animation="slideInRight">
-        <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Hugo Heringer</h2>
-        <p class="mt-4 text-amber-400 font-semibold text-lg">Estudante de Psicologia & Entusiasta do Mercado Financeiro</p>
-        <p class="mt-6 text-gray-300">
-          A minha jornada é unir duas grandes paixões: a complexidade da mente humana e a dinâmica do mercado financeiro. Acredito que o sucesso nos investimentos não se resume a gráficos e números, mas fundamentalmente ao autoconhecimento e ao controlo emocional.
-        </p>
-        <div class="mt-8 space-y-4">
-            <a href="https://pensaracademico.unifacig.edu.br/index.php/pensaracademico/article/view/4533" target="_blank" class="experience-item p-4 flex items-start">
-                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center">
-                    <svg class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                </div>
-                <div class="ml-4">
-                    <h4 class="text-lg font-semibold text-white">Pesquisa Académica</h4>
-                    <p class="text-gray-400">Foco em psicologia económica e tomada de decisão.</p>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/neuroinveste" target="_blank" class="experience-item p-4 flex items-start">
-                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center">
-                    <svg class="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                </div>
-                <div class="ml-4">
-                    <h4 class="text-lg font-semibold text-white">Criação de Conteúdo</h4>
-                    <p class="text-gray-400">Traduzindo conceitos complexos em insights práticos.</p>
-                </div>
-            </a>
-            <a href="https://www.linkedin.com/in/hugo-heringer-5159a033a" target="_blank" class="experience-item p-4 flex items-start">
-              <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center">
-                <svg class="h-6 w-6 text-amber-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
-              </div>
-              <div class="ml-4">
-                  <h4 class="text-lg font-semibold text-white">Perfil Profissional</h4>
-                  <p class="text-gray-400">Conecte-se comigo no LinkedIn.</p>
-              </div>
-            </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Seção de Artigos -->
-  <section id="artigos" class="py-24 bg-gray-800">
+  <section id="sobre" class="py-24 bg-neuro-dark/50 relative">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="text-center animate-on-scroll">
-        <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Artigos e Publicações</h2>
-        <p class="mt-4 text-lg text-gray-400">Trabalhos académicos e reflexões publicadas.</p>
-      </div>
-      <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <div class="space-y-8 animate-on-scroll" data-animation="slideInLeft">
-              <a href="https://www.semanticscholar.org/paper/ENTRE-O-CUIDADO-E-A-EXAUSTÃO%3A-ANÁLISE-DO-ESTRESSE-E-Guimarães-Brandão/1395a7348aed01d7cb41fd548bc08c0b35064aef" target="_blank" class="article-card">
-                  <h4>ENTRE O CUIDADO E A EXAUSTÃO: ANÁLISE DO ESTRESSE E BURNOUT EM PROFISSIONAIS DE SAÚDE</h4>
-                  <p>Ler publicação →</p>
-              </a>
-              <a href="https://pensaracademico.unifacig.edu.br/index.php/pensaracademico/article/view/4533" target="_blank" class="article-card">
-                  <h4>A RELAÇÃO ENTRE TRAÇOS DE PERSONALIDADE E O PERFIL DE INVESTIDOR: UMA ANÁLISE COM UNIVERSITÁRIOS</h4>
-                  <p>Ler publicação →</p>
-              </a>
-          </div>
-          <div class="flex justify-center animate-on-scroll mt-8 lg:mt-0" data-animation="slideInRight">
-              <div class="photo-frame mx-auto">
-                  <img src="images/foto7.png" alt="Foto de Hugo Heringer">
-              </div>
-          </div>
-      </div>
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            
+            <div class="order-1 md:order-1 w-full flex justify-center md:justify-start">
+                <div class="relative bg-neuro-card p-2 rounded-2xl border border-white/10 shadow-2xl max-w-sm w-full">
+                    <img src="images/foto4.jpg" alt="Hugo Heringer" class="rounded-xl w-full h-auto object-cover">
+                </div>
+            </div>
+
+            <div class="order-2 md:order-2 w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Hugo Heringer</h2>
+                <p class="text-neuro-gold text-lg mb-6 font-semibold">Estudante de Psicologia & Entusiasta do Mercado Financeiro</p>
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                    A minha jornada é unir duas grandes paixões: a complexidade da mente humana e a dinâmica do mercado financeiro. 
+                    Acredito que o sucesso nos investimentos não se resume a gráficos e números, mas fundamentalmente ao autoconhecimento e ao controle emocional.
+                </p>
+
+                <div class="space-y-4 w-full">
+                    <div class="bg-neuro-card p-5 rounded-xl border border-white/5 flex items-start gap-4 hover:border-neuro-gold/50 transition-all w-full">
+                        <div class="mt-1 p-2 rounded-full bg-neuro-gold/10 text-neuro-gold shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="text-white font-bold text-lg">Pesquisa Acadêmica</h4>
+                            <p class="text-gray-400 text-sm">Foco em psicologia econômica e tomada de decisão.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-neuro-card p-5 rounded-xl border border-white/5 flex items-start gap-4 hover:border-neuro-gold/50 transition-all w-full">
+                        <div class="mt-1 p-2 rounded-full bg-neuro-gold/10 text-neuro-gold shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="text-white font-bold text-lg">Criação de Conteúdo</h4>
+                            <p class="text-gray-400 text-sm">Traduzindo conceitos complexos em insights práticos.</p>
+                        </div>
+                    </div>
+
+                    <a href="https://www.linkedin.com/in/hugo-heringer-5159a033a" target="_blank" class="bg-neuro-card p-5 rounded-xl border border-white/5 flex items-start gap-4 hover:border-neuro-gold/50 transition-all group w-full">
+                        <div class="mt-1 p-2 rounded-full bg-neuro-gold/10 text-neuro-gold shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><path d="M2 12v7h4v-7zM4 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+                        </div>
+                        <div class="min-w-0">
+                            <h4 class="text-white font-bold text-lg group-hover:text-neuro-gold transition-colors">Perfil Profissional</h4>
+                            <p class="text-gray-400 text-sm">Conecte-se comigo no LinkedIn.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
   </section>
-
-  <!-- Nova Seção de Certificados -->
-  <section id="certificados" class="py-24 bg-gray-900">
+  <section id="artigos" class="py-24">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="text-center animate-on-scroll">
-        <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Certificados e Qualificações</h2>
-        <p class="mt-4 text-lg text-gray-400">Algumas das minhas certificações e cursos concluídos.</p>
-      </div>
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div class="animate-on-scroll flex justify-center" data-animation="slideInLeft">
-          <div class="photo-frame mx-auto">
-            <img src="images/foto6.png" alt="Foto de Hugo Heringer">
-          </div>
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Publicações Recentes</h2>
+            <div class="h-1 w-24 bg-neuro-gold mx-auto mt-4 rounded-full"></div>
         </div>
-        <div class="grid grid-cols-2 gap-6 animate-on-scroll" data-animation="slideInRight">
-          <div class="certificate-frame" onclick="openModal('images/certificado1.jpg')">
-            <img src="images/certificado1.jpg" alt="Certificado Behavioral Finance">
-            <div class="p-3 text-center">
-              <h5 class="font-semibold text-white text-sm leading-tight">Behavioral Finance</h5>
-              <p class="text-xs text-gray-400 mt-1">Duke University</p>
-            </div>
-          </div>
-          <div class="certificate-frame" onclick="openModal('images/certificado2.jpg')">
-            <img src="images/certificado2.jpg" alt="Certificado Learning and memory in the brain">
-             <div class="p-3 text-center">
-              <h5 class="font-semibold text-white text-sm leading-tight">Learning and memory in the brain</h5>
-              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
-            </div>
-          </div>
-          <div class="certificate-frame" onclick="openModal('images/certificado3.jpg')">
-            <img src="images/certificado3.jpg" alt="Certificado The Psychology of Emotions">
-             <div class="p-3 text-center">
-              <h5 class="font-semibold text-white text-sm leading-tight">The Psychology of Emotions</h5>
-              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
-            </div>
-          </div>
-          <div class="certificate-frame" onclick="openModal('images/certificado4.jpg')">
-            <img src="images/certificado4.jpg" alt="Certificado Introduction to Cognitive Psychology">
-             <div class="p-3 text-center">
-              <h5 class="font-semibold text-white text-sm leading-tight">Cognitive Psychology and Neuropsychology</h5>
-              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
-            </div>
-          </div>
-          <div class="certificate-frame" onclick="openModal('images/certificado5.jpg')">
-            <img src="images/certificado5.jpg" alt="Certificado The neuropsychology of decision making">
-             <div class="p-3 text-center">
-              <h5 class="font-semibold text-white text-sm leading-tight">The neuropsychology of decision making</h5>
-              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
-            </div>
-          </div>
-          <div class="certificate-frame" onclick="openModal('images/certificado6.jpg')">
-            <img src="images/certificado6.jpg" alt="Certificado The science of mind and decision making">
-             <div class="p-3 text-center">
-              <h5 class="font-semibold text-white text-sm leading-tight">The science of mind and decision making</h5>
-              <p class="text-xs text-gray-400 mt-1">University of Cambridge</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Seção Conecte-se Comigo (Instagram) -->
-  <section id="instagram" class="py-24 bg-gray-800">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="text-center animate-on-scroll">
-        <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Conecte-se Comigo</h2>
-        <p class="mt-4 text-lg text-gray-400">Acompanhe as minhas últimas postagens e vamos conversar.</p>
-      </div>
-      <div class="mt-12 animate-on-scroll">
-        <script src="https://elfsightcdn.com/platform.js" data-elfsight-app-lazy defer></script>
-        <div class="elfsight-app-359521fc-cfa0-44e6-9b9d-b96dd64d4177" data-elfsight-app-lazy></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Seção Contato (Fale Comigo) -->
-  <section id="contato" class="py-24 bg-gray-900">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <div class="animate-on-scroll">
-            <h2 class="section-title text-3xl md:text-4xl font-bold text-white">Fale Comigo</h2>
-        </div>
-        <div class="mt-10 max-w-3xl mx-auto bg-gray-700 p-6 sm:p-8 rounded-2xl shadow-lg border-l-4 border-amber-400 animate-on-scroll">
-            <p class="text-gray-300 text-lg mb-6 text-center">Entre em contacto para parcerias, projetos e pesquisas académicas.</p>
-            <div class="space-y-4 text-left">
-                <p class="text-gray-100"><strong class="font-semibold text-gray-100">Email:</strong> neuroinveste@gmail.com</p>
-                <p class="text-gray-100"><strong class="font-semibold text-gray-100">Telefone:</strong> (33) 9 8832-6566</p>
-                <p class="text-gray-100"><strong class="font-semibold text-gray-100">Localização:</strong> Manhuaçu - MG</p>
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+             <div class="flex flex-col gap-6 order-2 md:order-1 w-full min-w-0">
+                <a href="https://www.semanticscholar.org/paper/ENTRE-O-CUIDADO-E-A-EXAUSTÃO%3A-ANÁLISE-DO-ESTRESSE-E-Guimarães-Brandão/1395a7348aed01d7cb41fd548bc08c0b35064aef" target="_blank" class="group relative bg-neuro-card border border-white/5 rounded-2xl p-8 hover:border-neuro-gold/50 transition-all hover:-translate-y-1 hover:shadow-2xl overflow-hidden w-full">
+                    <div class="absolute top-0 right-0 bg-neuro-gold/10 p-3 rounded-bl-2xl text-neuro-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L10 6.42"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07L14 17.58"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-neuro-gold transition-colors pr-8">Entre o Cuidado e a Exaustão</h3>
+                    <p class="text-sm text-gray-400 mb-6 line-clamp-3">Análise do estresse e Burnout em profissionais de saúde: uma perspectiva psicológica essencial.</p>
+                    <span class="text-neuro-gold text-sm font-semibold flex items-center gap-2">Ler Artigo Completo <span class="transition-transform group-hover:translate-x-1">→</span></span>
+                </a>
+
+                <a href="https://pensaracademico.unifacig.edu.br/index.php/pensaracademico/article/view/4533" target="_blank" class="group relative bg-neuro-card border border-white/5 rounded-2xl p-8 hover:border-neuro-gold/50 transition-all hover:-translate-y-1 hover:shadow-2xl overflow-hidden w-full">
+                    <div class="absolute top-0 right-0 bg-neuro-gold/10 p-3 rounded-bl-2xl text-neuro-gold">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L10 6.42"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07L14 17.58"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3 group-hover:text-neuro-gold transition-colors pr-8">Personalidade e Investimentos</h3>
+                    <p class="text-sm text-gray-400 mb-6 line-clamp-3">A relação entre traços de personalidade e o perfil de investidor: uma análise com universitários.</p>
+                    <span class="text-neuro-gold text-sm font-semibold flex items-center gap-2">Ler Artigo Completo <span class="transition-transform group-hover:translate-x-1">→</span></span>
+                </a>
+            </div>
+
+             <div class="order-1 md:order-2 w-full flex justify-center md:justify-end">
+                <div class="relative bg-neuro-card p-2 rounded-2xl border border-white/10 shadow-2xl max-w-sm w-full">
+                    <img src="images/foto7.png" alt="Hugo Heringer" class="rounded-xl w-full h-auto object-cover">
+                </div>
             </div>
         </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-black py-12">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-      <p class="font-semibold text-white text-lg">© 2025 Hugo Heringer - NeuroInveste</p>
-      <p class="text-sm mt-4 max-w-2xl mx-auto text-gray-400">
-        Este site é mantido por um estudante de Psicologia. Não possui intuito de oferecer atendimento clínico,
-        mas apenas divulgar conteúdos educacionais e buscar parcerias em projetos e pesquisas académicas.
-      </p>
+  <section id="certificados" class="py-24 bg-neuro-card/30">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8" x-data="{ open: false, imgSrc: '', certs: [
+            {t: 'Behavioral Finance', o: 'Duke University', i: 'images/certificado1.jpg'},
+            {t: 'Learning & Memory', o: 'Cambridge', i: 'images/certificado2.jpg'},
+            {t: 'Psychology of Emotions', o: 'Cambridge', i: 'images/certificado3.jpg'},
+            {t: 'Cognitive Psychology', o: 'Cambridge', i: 'images/certificado4.jpg'},
+            {t: 'Decision Making', o: 'Cambridge', i: 'images/certificado5.jpg'},
+            {t: 'Science of Mind', o: 'Cambridge', i: 'images/certificado6.jpg'}
+        ]}">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-white">Certificações</h2>
+            <p class="text-gray-400 mt-2">Formação contínua em instituições de excelência.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            <div class="hidden md:flex justify-center md:justify-start relative w-full">
+                <div class="relative bg-neuro-card p-2 rounded-2xl border border-white/10 shadow-2xl max-w-sm w-full">
+                    <img src="images/foto6.png" alt="Hugo Heringer Certificações" class="rounded-xl w-full h-auto object-cover">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 w-full">
+                <template x-for="c in certs">
+                    <button @click="open = true; imgSrc = c.i" class="group text-left bg-neuro-card border border-white/5 rounded-xl overflow-hidden hover:ring-2 hover:ring-neuro-gold transition-all w-full">
+                        <div class="aspect-video overflow-hidden bg-black w-full">
+                            <img :src="c.i" :alt="c.t" loading="lazy" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all">
+                        </div>
+                        <div class="p-3">
+                            <h5 class="text-white font-semibold text-xs md:text-sm truncate w-full" x-text="c.t"></h5>
+                            <p class="text-[10px] text-gray-400 truncate w-full" x-text="c.o"></p>
+                        </div>
+                    </button>
+                </template>
+            </div>
+        </div>
+
+        <div x-show="open" style="display: none" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4" x-transition @keydown.escape.window="open = false">
+            <div class="absolute inset-0" @click="open = false"></div>
+            <div class="relative max-w-4xl w-full flex flex-col items-center">
+                <button @click="open = false" class="absolute -top-12 right-0 md:top-4 md:right-4 z-50 bg-white/10 p-2 rounded-full text-white"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                <img :src="imgSrc" class="max-w-full max-h-[85vh] rounded-lg shadow-2xl border border-white/10">
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+          <h2 class="text-2xl font-bold text-white mb-8">No Instagram</h2>
+          <behold-widget feed-id="DBXaCWkeLOBY4Qs4Qmdd"></behold-widget>
+          <script>
+            (() => {
+              const d=document,s=d.createElement("script");s.type="module";
+              s.src="https://w.behold.so/widget.js";d.head.append(s);
+            })();
+          </script>
+      </div>
+  </section>
+
+  <section class="bg-neuro-dark border-t border-white/5 py-12">
+      <div class="max-w-3xl mx-auto px-6 text-center">
+          <div class="inline-block p-3 rounded-full bg-yellow-500/10 text-yellow-500 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-2">Aviso Legal</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+              Este site é mantido por um <strong>estudante de Psicologia</strong>. 
+              Não possui intuito de oferecer atendimento clínico, mas apenas divulgar conteúdos educacionais e buscar parcerias em projetos e pesquisas acadêmicas.
+          </p>
+      </div>
+  </section>
+
+  <footer id="contato" class="bg-black/40 border-t border-white/5 pt-16 pb-8">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-white mb-6">Entre em contato</h2>
+        <p class="text-gray-400 mb-10">Para parcerias, projetos e pesquisas acadêmicas.</p>
+        
+        <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
+            <div class="flex flex-col items-center gap-2">
+                <div class="bg-neuro-card p-3 rounded-full text-neuro-gold border border-white/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <span class="text-white font-medium">neuroinveste@gmail.com</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                 <div class="bg-neuro-card p-3 rounded-full text-neuro-gold border border-white/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                 </div>
+                <span class="text-white font-medium">(33) 9 8832-6566</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                 <div class="bg-neuro-card p-3 rounded-full text-neuro-gold border border-white/10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                 </div>
+                <span class="text-white font-medium">Manhuaçu - MG</span>
+            </div>
+        </div>
+
+        <p class="text-gray-600 text-sm">© 2025 Hugo Heringer - NeuroInveste</p>
     </div>
   </footer>
-  
-  <!-- Modal (Lightbox) para Certificados -->
-  <div id="certificateModal" class="modal hidden">
-    <span class="close-modal" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImage">
-  </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Animação de Scroll
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      if (animatedElements.length) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
-        animatedElements.forEach(element => {
-          observer.observe(element);
-        });
-      }
-
-      // Menu Móvel
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    });
-
-    // Funções para o Modal (Lightbox)
-    const modal = document.getElementById('certificateModal');
-    const modalImg = document.getElementById('modalImage');
-
-    function openModal(imgSrc) {
-      modal.classList.remove('hidden');
-      modalImg.src = imgSrc;
-    }
-
-    function closeModal() {
-      modal.classList.add('hidden');
-    }
-  </script>
+  <a href="https://wa.me/5533988326566" target="_blank" class="fixed bottom-6 right-6 z-40 group">
+    <div class="absolute bottom-full right-0 mb-3 mr-[-10px] w-max px-3 py-1 bg-white text-gray-900 text-xs font-bold rounded opacity-0 group-hover:opacity-100 transition-opacity shadow-lg pointer-events-none">Fale comigo agora!</div>
+    <span class="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping"></span>
+    <div class="relative flex items-center justify-center w-14 h-14 bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition-transform hover:scale-110">
+        <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+  </a>
 
 </body>
 </html>
-
