@@ -4,17 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>NeuroInveste - Hugo Heringer</title>
-  <meta name="description" content="NeuroInveste: Unindo Psicologia, Finanças e Inovação.">
+  
+  <meta name="description" content="NeuroInveste: Unindo Psicologia, Finanças e Inovação. Explore a mente do investidor.">
 
-  <link rel="icon" type="image/png" href="images/logodourado-512x512.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logodourado-512x512.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/logodourado-512x512.png">
+  <link rel="apple-touch-icon" href="images/logodourado-512x512.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://neuroinveste.com.br">
+  <meta property="og:title" content="NeuroInveste - Hugo Heringer">
+  <meta property="og:description" content="Unindo Psicologia, Finanças e Inovação para decisões mais inteligentes.">
+  
+  <meta property="og:image" content="https://neuroinveste.com.br/images/foto1.jpg"> 
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
-
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <script>
     tailwind.config = {
       theme: {
@@ -22,15 +33,13 @@
           fontFamily: { sans: ['Poppins', 'sans-serif'] },
           colors: {
             neuro: {
-              dark: '#0f172a',    // Azul muito escuro
-              card: '#1e293b',    // Slate 800
-              gold: '#f59e0b',    // Amber 500
+              dark: '#0f172a',
+              card: '#1e293b',
+              gold: '#f59e0b',
               goldHover: '#d97706'
             }
           },
-          animation: {
-            'blob': 'blob 10s infinite',
-          },
+          animation: { 'blob': 'blob 10s infinite' },
           keyframes: {
             blob: {
               '0%': { transform: 'translate(0px, 0px) scale(1)' },
@@ -54,11 +63,7 @@
       background-color: #f59e0b; transition: width 0.3s ease;
     }
     .nav-link:hover::after { width: 100%; }
-    
-    /* Ajuste Behold */
     behold-widget { display: block; width: 100%; margin: 0 auto; }
-    
-    /* Ícones SVG padronizados */
     .icon-social { width: 20px; height: 20px; fill: currentColor; }
   </style>
 </head>
